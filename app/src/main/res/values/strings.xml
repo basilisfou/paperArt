@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">ArtKotsis</string>
     <string name="title_item_detail">Item Detail</string>
+
+    <string name="density_pointer">g/m <sup><small> 2 </small></sup></string>
+    <string name="color">grayscale</string>
+    <string name="resolution">resolution</string>
+    <string name="bytes">%s byte</string>
+    <string name="serial_number">serial number %s</string>
 </resources>

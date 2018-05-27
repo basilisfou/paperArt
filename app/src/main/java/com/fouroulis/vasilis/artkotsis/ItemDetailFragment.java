@@ -3,9 +3,11 @@ package com.fouroulis.vasilis.artkotsis;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.fouroulis.vasilis.artkotsis.databinding.ItemDetailBinding;
 import com.fouroulis.vasilis.artkotsis.model.PaperItem;
 
 import java.io.IOException;
@@ -26,7 +29,6 @@ import java.util.List;
 /**
  * A fragment representing a single Item detail screen.
  * This fragment is either contained in a {@link ItemListActivity}
- * in two-pane mode (on tablets) or a {@link ItemDetailActivity}
  * on handsets.
  */
 public class ItemDetailFragment extends Fragment {
@@ -35,6 +37,7 @@ public class ItemDetailFragment extends Fragment {
      * represents.
      */
     public static final String ARG_ITEM = "item";
+    private AutoClearedValue<ItemDetailBinding> binding;
     private PaperItem paperItem;
 
     public ItemDetailFragment() {
@@ -62,15 +65,24 @@ public class ItemDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.item_detail, container, false);
+        ItemDetailBinding dataBinding = DataBindingUtil.inflate(inflater,
+                R.layout.item_detail, container, false);
+        binding = new AutoClearedValue<>(this, dataBinding);
+        return dataBinding.getRoot();
 
-        ImageView imageView = rootView.findViewById(R.id.image_view);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.get().setItem(paperItem);
+
         try {
-            imageView.setImageDrawable(takeImageFromAssets(paperItem.getImage()));
+            binding.get().imageView.setImageDrawable(takeImageFromAssets(paperItem.getImage()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return rootView;
     }
 
     private Drawable takeImageFromAssets(String image) throws IOException {
