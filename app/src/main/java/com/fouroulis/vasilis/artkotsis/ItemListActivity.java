@@ -89,6 +89,7 @@ public class ItemListActivity extends AppCompatActivity {
 
         private final ItemListActivity mParentActivity;
         private final List<PaperItem> mValues;
+        private int selectedPos = RecyclerView.NO_POSITION;
         private OnClickListener onClickListener;
 
         SimpleItemRecyclerViewAdapter(ItemListActivity parent,
@@ -110,6 +111,12 @@ public class ItemListActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull final ViewHolder holder,
                                      int position) {
             holder.mIdView.setText(mValues.get(position).getId() + "/" + mValues.size() );
+
+            if(selectedPos == position){
+                holder.mIdView.setTextColor(getColorCustom(holder.mIdView.getContext(),R.color.text));
+            } else {
+                holder.mIdView.setTextColor(getColorCustom(holder.mIdView.getContext(),R.color.text_unpick));
+            }
         }
 
         @Override
@@ -132,9 +139,8 @@ public class ItemListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         onClickListener.onClick(getAdapterPosition());
-                        for(int i = 0 ; i < mValues.size() ; i++){
-                            mIdView.setTextColor(getColorCustom(mIdView.getContext(),R.color.text));
-                        }
+                        selectedPos = getLayoutPosition();
+                        notifyDataSetChanged();
                     }
                 });
             }
