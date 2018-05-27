@@ -1,6 +1,7 @@
 package com.fouroulis.vasilis.artkotsis;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -131,6 +132,9 @@ public class ItemListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         onClickListener.onClick(getAdapterPosition());
+                        for(int i = 0 ; i < mValues.size() ; i++){
+                            mIdView.setTextColor(getColorCustom(mIdView.getContext(),R.color.text));
+                        }
                     }
                 });
             }
@@ -138,6 +142,14 @@ public class ItemListActivity extends AppCompatActivity {
 
         interface OnClickListener {
             void onClick(int position);
+        }
+
+        private int getColorCustom(Context context,int resColor){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                return context.getColor(resColor);
+            } else {
+                return context.getResources().getColor(resColor);
+            }
         }
     }
 
