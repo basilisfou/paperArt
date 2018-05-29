@@ -1,6 +1,5 @@
 package com.fouroulis.vasilis.artkotsis;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,10 +42,18 @@ public class ItemListActivity extends AppCompatActivity {
         assert recyclerView != null;
 
         try {
-            setupRecyclerView((RecyclerView) recyclerView, createList());
+            List<PaperItem> paperItems = createList();
+            setupRecyclerView((RecyclerView) recyclerView, paperItems);
+            openGridFragment(paperItems);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void openGridFragment(List<PaperItem> paperItems){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.item_detail_container, ItemGridFragment.newInstance(paperItems))
+                .commit();
     }
 
     private List<PaperItem> createList() throws IOException {
@@ -54,7 +61,7 @@ public class ItemListActivity extends AppCompatActivity {
         List<String> images =  getImages(this);
 
         for(int i = 0; i < images.size(); i++){
-            PaperItem item = new PaperItem(i,"80",
+            PaperItem item = new PaperItem(i + "/" + images.size() , i,"80",
                     "16",
                     "200",
                     "grayscale",
@@ -110,12 +117,16 @@ public class ItemListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull final ViewHolder holder,
                                      int position) {
-            holder.mIdView.setText(mValues.get(position).getId() + "/" + mValues.size() );
+
+            holder.mtitle.setText(mValues.get(position).getId() + "/" + mValues.size() );
+            holder.mSecondTitle.setText(mValues.get(position).getId() + "/" + mValues.size() );
 
             if(selectedPos == position){
-                holder.mIdView.setTextColor(getColorCustom(holder.mIdView.getContext(),R.color.text));
+                holder.mtitle.setTextColor(getColorCustom(holder.mtitle.getContext(),R.color.title_first_color));
+                holder.mSecondTitle.setTextColor(getColorCustom(holder.mtitle.getContext(),R.color.title_second_color));
             } else {
-                holder.mIdView.setTextColor(getColorCustom(holder.mIdView.getContext(),R.color.text_unpick));
+                holder.mtitle.setTextColor(getColorCustom(holder.mtitle.getContext(),R.color.text_unpick));
+                holder.mSecondTitle.setTextColor(getColorCustom(holder.mtitle.getContext(),R.color.text_unpick));
             }
         }
 
@@ -129,12 +140,14 @@ public class ItemListActivity extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            final TextView mIdView;
+            final TextView mtitle;
+            final TextView mSecondTitle;
 
 
             ViewHolder(View view) {
                 super(view);
-                mIdView = view.findViewById(R.id.id_text);
+                mtitle = view.findViewById(R.id.id_text);
+                mSecondTitle = view.findViewById(R.id.id_text_second);
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class PaperItem implements Serializable {
 
     private int id;
+    private String title;
     private String gramsPerSquareMetre;
     private String bit;
     private String dpi;
@@ -119,7 +120,15 @@ public class PaperItem implements Serializable {
         this.serialNumber = serialNumber;
     }
 
-    public PaperItem(int id,  String gramsPerSquareMetre, String bit, String dpi, String color, String resolution, String bytes, String paperType, String scanPrinter, String dateTime, String serialNumber, String image) {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public PaperItem(String title, int id, String gramsPerSquareMetre, String bit, String dpi, String color, String resolution, String bytes, String paperType, String scanPrinter, String dateTime, String serialNumber, String image) {
         this.id = id;
         this.gramsPerSquareMetre = gramsPerSquareMetre;
         this.bit = bit;
@@ -132,5 +141,6 @@ public class PaperItem implements Serializable {
         this.dateTime = dateTime;
         this.serialNumber = serialNumber;
         this.image = image;
+        this.title = title;
     }
 }

@@ -77,7 +77,7 @@ public class ItemDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.get().setItem(paperItem);
-
+        binding.get().title.setText(paperItem.getTitle());
         try {
             binding.get().imageView.setImageDrawable(takeImageFromAssets(paperItem.getImage()));
         } catch (IOException e) {
