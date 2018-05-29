@@ -90,4 +90,6 @@ public class ItemDetailFragment extends Fragment {
         return Drawable.createFromStream(inputstream, null);
     }
 
+
+
 }

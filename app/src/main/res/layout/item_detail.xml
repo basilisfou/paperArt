@@ -30,7 +30,8 @@
                 android:src="@drawable/arrow1"
                 android:layout_marginTop="60dp"
                 android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"/>
+                android:layout_alignParentTop="true"
+                tools:ignore="ContentDescription" />
 
             <ImageView
                 android:layout_width="31dp"
@@ -38,7 +39,8 @@
                 android:src="@drawable/arrow2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="60dp"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentBottom="true"
+                tools:ignore="ContentDescription" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -49,13 +51,13 @@
             android:layout_weight="4"
             android:layout_marginLeft="20dp"
             android:padding="20dp"
-            android:background="@drawable/borders_details">
+            android:background="@drawable/borders_details"
+            android:layout_marginStart="20dp">
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="#000"
-                android:text="dfhgkdfhg"
                 android:id="@+id/title"
                 android:layout_alignParentTop="true"/>
 

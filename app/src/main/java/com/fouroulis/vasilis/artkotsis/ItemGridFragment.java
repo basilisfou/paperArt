@@ -1,15 +1,24 @@
 package com.fouroulis.vasilis.artkotsis;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.fouroulis.vasilis.artkotsis.databinding.FragmentGridBinding;
 import com.fouroulis.vasilis.artkotsis.databinding.ItemDetailBinding;
 import com.fouroulis.vasilis.artkotsis.model.PaperItem;
 import com.google.gson.Gson;
@@ -34,7 +43,7 @@ public class ItemGridFragment extends Fragment {
      * represents.
      */
     public static final String ARG_ITEMS = "items";
-    private AutoClearedValue<ItemDetailBinding> binding;
+    private AutoClearedValue<FragmentGridBinding> binding;
     private List<PaperItem> paperItems;
 
     public ItemGridFragment() {
@@ -68,27 +77,88 @@ public class ItemGridFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ItemDetailBinding dataBinding = DataBindingUtil.inflate(inflater,
-                R.layout.item_detail, container, false);
+        FragmentGridBinding dataBinding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_grid, container, false);
         binding = new AutoClearedValue<>(this, dataBinding);
         return dataBinding.getRoot();
-
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        try {
-////            binding.get().imageView.setImageDrawable(takeImageFromAssets(paperItem.getImage()));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        binding.get().gridRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
+        binding.get().gridRecyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this,paperItems));
     }
 
-    private Drawable takeImageFromAssets(String image) throws IOException {
-        InputStream inputstream = getActivity().getAssets().open("images/" +image);
-        return Drawable.createFromStream(inputstream, null);
+    public static class SimpleItemRecyclerViewAdapter
+            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+
+        private final List<PaperItem> mValues;
+        private int selectedPos = RecyclerView.NO_POSITION;
+        private ItemListActivity.SimpleItemRecyclerViewAdapter.OnClickListener onClickListener;
+        private Fragment fragment;
+
+        SimpleItemRecyclerViewAdapter(Fragment fragment,List<PaperItem> items) {
+            mValues = items;
+            this.fragment = fragment;
+
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.grid_detail, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull final SimpleItemRecyclerViewAdapter.ViewHolder holder,
+                                     int position) {
+            Glide.with(fragment)
+                    .load(Uri.parse("file:///android_asset/images/" + mValues.get(position).getImage()))
+                    .into(holder.mImage);
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return mValues.size();
+        }
+
+        public void setOnPaperClickListener(ItemListActivity.SimpleItemRecyclerViewAdapter.OnClickListener onClickListener) {
+            this.onClickListener = onClickListener;
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            final ImageView mImage;
+
+            ViewHolder(View view) {
+                super(view);
+                mImage = view.findViewById(R.id.image_view_grid);
+
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onClickListener.onClick(getAdapterPosition());
+                        selectedPos = getLayoutPosition();
+                        notifyDataSetChanged();
+                    }
+                });
+            }
+        }
+
+        interface OnClickListener {
+            void onClick(int position);
+        }
+
+        private int getColorCustom(Context context, int resColor){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                return context.getColor(resColor);
+            } else {
+                return context.getResources().getColor(resColor);
+            }
+        }
     }
 
 }
