@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/item_background"
-    android:orientation="horizontal">
+    android:layout_height="50dp"
+    android:background="@drawable/item_background">
 
     <TextView
         android:id="@+id/id_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
         android:textColor="#fff" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/id_text_second"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:textSize="20sp"
+        android:textColor="#fff"/>
+
+</RelativeLayout>
