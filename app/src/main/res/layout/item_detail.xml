@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -59,12 +60,14 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 android:id="@+id/title"
+                app:font="@{`app_font.otf`}"
                 android:layout_alignParentTop="true"/>
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="#000"
+                app:font="@{`app_font.otf`}"
                 android:text="@{item.gramsPerSquareMetre}"
                 android:id="@+id/density"
                 android:layout_above="@+id/density_pointer"/>
@@ -75,7 +78,8 @@
                 android:textColor="#000"
                 android:id="@+id/density_pointer"
                 android:text="@string/density_pointer"
-                android:layout_above="@+id/bit"/>
+                android:layout_above="@+id/bit"
+                app:font="@{`app_font.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -83,7 +87,8 @@
                 android:textColor="#000"
                 android:text="@{item.bit}"
                 android:id="@+id/bit"
-                android:layout_above="@+id/dpi"/>
+                android:layout_above="@+id/dpi"
+                app:font="@{`app_font.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -91,7 +96,8 @@
                 android:textColor="#000"
                 android:id="@+id/dpi"
                 android:text="@{item.dpi}"
-                android:layout_above="@+id/color"/>
+                android:layout_above="@+id/color"
+                app:font="@{`app_font.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -99,7 +105,8 @@
                 android:textColor="#000"
                 android:id="@+id/color"
                 android:text="@string/color"
-                android:layout_above="@+id/resolution_pointer"/>
+                android:layout_above="@+id/resolution_pointer"
+                app:font="@{`app_font.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -107,7 +114,8 @@
                 android:textColor="#000"
                 android:id="@+id/resolution_pointer"
                 android:text="@string/resolution"
-                android:layout_above="@+id/bytes"/>
+                android:layout_above="@+id/bytes"
+                app:font="@{`app_font.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -115,7 +123,8 @@
                 android:textColor="#000"
                 android:id="@+id/bytes"
                 android:text="@{item.bytes}"
-                android:layout_above="@+id/paper"/>
+                android:layout_above="@+id/paper"
+                app:font="@{`app_font.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -123,7 +132,8 @@
                 android:textColor="#000"
                 android:id="@+id/paper"
                 android:text="@{item.paperType}"
-                android:layout_above="@+id/scan_jet"/>
+                android:layout_above="@+id/scan_jet"
+                app:font="@{`app_font.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -131,7 +141,8 @@
                 android:textColor="#000"
                 android:id="@+id/scan_jet"
                 android:text="@{item.scanPrinter}"
-                android:layout_above="@+id/date"/>
+                android:layout_above="@+id/date"
+                app:font="@{`app_font.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -139,7 +150,8 @@
                 android:textColor="#000"
                 android:text="@{item.dateTime}"
                 android:id="@+id/date"
-                android:layout_above="@+id/serial_number"/>
+                android:layout_above="@+id/serial_number"
+                app:font="@{`app_font.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -147,7 +159,8 @@
                 android:textColor="#000"
                 android:id="@+id/serial_number"
                 android:text="@{item.serialNumber}"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentBottom="true"
+                app:font="@{`app_font.otf`}" />
         </RelativeLayout>
 
         <ImageView

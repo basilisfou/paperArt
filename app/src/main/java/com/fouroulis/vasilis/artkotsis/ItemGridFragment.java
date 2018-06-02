@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.fouroulis.vasilis.artkotsis.databinding.FragmentGridBinding;
 import com.fouroulis.vasilis.artkotsis.databinding.ItemDetailBinding;
 import com.fouroulis.vasilis.artkotsis.model.PaperItem;
+import com.fouroulis.vasilis.artkotsis.view.GridDecoration;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -45,6 +46,7 @@ public class ItemGridFragment extends Fragment {
     public static final String ARG_ITEMS = "items";
     private AutoClearedValue<FragmentGridBinding> binding;
     private List<PaperItem> paperItems;
+    private SimpleItemRecyclerViewAdapter mAdapter;
 
     public ItemGridFragment() {
 
@@ -87,15 +89,23 @@ public class ItemGridFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.get().gridRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
-        binding.get().gridRecyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this,paperItems));
+        binding.get().gridRecyclerView.addItemDecoration(new GridDecoration(20,
+                4));
+
+        mAdapter = new SimpleItemRecyclerViewAdapter(this,paperItems);
+        mAdapter.setOnPaperClickListener(position -> getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.item_detail_container, ItemDetailFragment.newInstance(paperItems.get(position)))
+                .commit());
+        binding.get().gridRecyclerView.setAdapter(mAdapter);
+
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final List<PaperItem> mValues;
-        private int selectedPos = RecyclerView.NO_POSITION;
-        private ItemListActivity.SimpleItemRecyclerViewAdapter.OnClickListener onClickListener;
+
+        private OnClickListener onClickListener;
         private Fragment fragment;
 
         SimpleItemRecyclerViewAdapter(Fragment fragment,List<PaperItem> items) {
@@ -126,7 +136,7 @@ public class ItemGridFragment extends Fragment {
             return mValues.size();
         }
 
-        public void setOnPaperClickListener(ItemListActivity.SimpleItemRecyclerViewAdapter.OnClickListener onClickListener) {
+        public void setOnPaperClickListener(OnClickListener onClickListener) {
             this.onClickListener = onClickListener;
         }
 
@@ -137,14 +147,7 @@ public class ItemGridFragment extends Fragment {
                 super(view);
                 mImage = view.findViewById(R.id.image_view_grid);
 
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onClickListener.onClick(getAdapterPosition());
-                        selectedPos = getLayoutPosition();
-                        notifyDataSetChanged();
-                    }
-                });
+                view.setOnClickListener(view1 -> onClickListener.onClick(getAdapterPosition()));
             }
         }
 
@@ -152,13 +155,7 @@ public class ItemGridFragment extends Fragment {
             void onClick(int position);
         }
 
-        private int getColorCustom(Context context, int resColor){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                return context.getColor(resColor);
-            } else {
-                return context.getResources().getColor(resColor);
-            }
-        }
+
     }
 
 }
