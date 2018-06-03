@@ -8,7 +8,8 @@
             name="item"
             type="com.fouroulis.vasilis.artkotsis.model.PaperItem"  />
     </data>
-    <LinearLayout
+
+    <RelativeLayout
         android:id="@+id/item_detail"
         style="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
@@ -17,157 +18,246 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:orientation="horizontal"
-        android:layout_weight="10"
-        tools:context=".ItemDetailFragment" >
+        tools:context=".ItemDetailFragment">
 
         <RelativeLayout
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/toolbar">
+            <!-- Arrows -->
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/container_arrows">
 
-            <ImageView
-                android:layout_width="31dp"
-                android:layout_height="98dp"
-                android:src="@drawable/arrow1"
-                android:layout_marginTop="60dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
-                tools:ignore="ContentDescription" />
+                <ImageView
+                    android:layout_width="31dp"
+                    android:layout_height="98dp"
+                    android:src="@drawable/arrow1"
+                    android:layout_marginTop="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+                    tools:ignore="ContentDescription" />
 
-            <ImageView
-                android:layout_width="31dp"
-                android:layout_height="98dp"
-                android:src="@drawable/arrow2"
-                android:layout_centerHorizontal="true"
+                <ImageView
+                    android:layout_width="31dp"
+                    android:layout_height="98dp"
+                    android:src="@drawable/arrow2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="60dp"
+                    android:layout_alignParentBottom="true"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
+
+            <!-- details-->
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="400dp"
                 android:layout_marginBottom="60dp"
-                android:layout_alignParentBottom="true"
-                tools:ignore="ContentDescription" />
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="20dp"
+                android:padding="20dp"
+                android:background="@drawable/borders_details"
+                android:layout_marginStart="20dp"
+                android:layout_toLeftOf="@+id/image_view"
+                android:layout_toStartOf="@+id/image_view">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/title"
+                    app:font="@{`app_font.otf`}"
+                    android:layout_alignParentTop="true"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    app:font="@{`app_font.otf`}"
+                    android:text="@{item.gramsPerSquareMetre}"
+                    android:id="@+id/density"
+                    android:layout_above="@+id/density_pointer"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/density_pointer"
+                    android:text="@string/density_pointer"
+                    android:layout_above="@+id/bit"
+                    app:font="@{`app_font.otf`}" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:text="@{item.bit}"
+                    android:id="@+id/bit"
+                    android:layout_above="@+id/dpi"
+                    app:font="@{`app_font.otf`}" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/dpi"
+                    android:text="@{item.dpi}"
+                    android:layout_above="@+id/color"
+                    app:font="@{`app_font.otf`}" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/color"
+                    android:text="@string/color"
+                    android:layout_above="@+id/resolution_pointer"
+                    app:font="@{`app_font.otf`}" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/resolution_pointer"
+                    android:text="@string/resolution"
+                    android:layout_above="@+id/bytes"
+                    app:font="@{`app_font.otf`}" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/bytes"
+                    android:text="@{item.bytes}"
+                    android:layout_above="@+id/paper"
+                    app:font="@{`app_font.otf`}" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/paper"
+                    android:text="@{item.paperType}"
+                    android:layout_above="@+id/scan_jet"
+                    app:font="@{`app_font.otf`}" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/scan_jet"
+                    android:text="@{item.scanPrinter}"
+                    android:layout_above="@+id/date"
+                    app:font="@{`app_font.otf`}" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:text="@{item.dateTime}"
+                    android:id="@+id/date"
+                    android:layout_above="@+id/serial_number"
+                    app:font="@{`app_font.otf`}" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/serial_number"
+                    android:text="@{item.serialNumber}"
+                    android:layout_alignParentBottom="true"
+                    app:font="@{`app_font.otf`}" />
+            </RelativeLayout>
+
+            <!-- Image -->
+            <ImageView
+                android:layout_width="500dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="match_parent"
+                android:id="@+id/image_view"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_marginBottom="60dp"
-            android:layout_marginTop="60dp"
-            android:layout_weight="4"
+        <!-- toolbar -->
+        <LinearLayout
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
             android:layout_marginLeft="20dp"
-            android:padding="20dp"
-            android:background="@drawable/borders_details"
-            android:layout_marginStart="20dp">
-
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/toolbar"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="@drawable/background_toolbar">
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/title"
                 app:font="@{`app_font.otf`}"
-                android:layout_alignParentTop="true"/>
+                android:layout_gravity="center_vertical"
+                android:textSize="25sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/toolbar_title_1" />
+
+            <View
+                android:layout_height="10dp"
+                android:layout_width="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/fullstop_background"/>
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="#000"
                 app:font="@{`app_font.otf`}"
-                android:text="@{item.gramsPerSquareMetre}"
-                android:id="@+id/density"
-                android:layout_above="@+id/density_pointer"/>
+                android:layout_gravity="center_vertical"
+                android:textSize="25sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/toolbar_title_2" />
+
+            <View
+                android:layout_height="10dp"
+                android:layout_width="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/fullstop_background"/>
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/density_pointer"
-                android:text="@string/density_pointer"
-                android:layout_above="@+id/bit"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`app_font.otf`}"
+                android:layout_gravity="center_vertical"
+                android:textSize="25sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/toolbar_title_3" />
+
+            <View
+                android:layout_height="10dp"
+                android:layout_width="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/fullstop_background"/>
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:text="@{item.bit}"
-                android:id="@+id/bit"
-                android:layout_above="@+id/dpi"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`app_font.otf`}"
+                android:layout_gravity="center_vertical"
+                android:textSize="25sp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/toolbar_title_4" />
 
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/dpi"
-                android:text="@{item.dpi}"
-                android:layout_above="@+id/color"
-                app:font="@{`app_font.otf`}" />
+        </LinearLayout>
 
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/color"
-                android:text="@string/color"
-                android:layout_above="@+id/resolution_pointer"
-                app:font="@{`app_font.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/resolution_pointer"
-                android:text="@string/resolution"
-                android:layout_above="@+id/bytes"
-                app:font="@{`app_font.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/bytes"
-                android:text="@{item.bytes}"
-                android:layout_above="@+id/paper"
-                app:font="@{`app_font.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/paper"
-                android:text="@{item.paperType}"
-                android:layout_above="@+id/scan_jet"
-                app:font="@{`app_font.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/scan_jet"
-                android:text="@{item.scanPrinter}"
-                android:layout_above="@+id/date"
-                app:font="@{`app_font.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:text="@{item.dateTime}"
-                android:id="@+id/date"
-                android:layout_above="@+id/serial_number"
-                app:font="@{`app_font.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/serial_number"
-                android:text="@{item.serialNumber}"
-                android:layout_alignParentBottom="true"
-                app:font="@{`app_font.otf`}" />
-        </RelativeLayout>
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:layout_height="match_parent"
-            android:id="@+id/image_view"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 </layout>
