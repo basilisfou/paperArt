@@ -1,29 +1,21 @@
 package com.fouroulis.vasilis.artkotsis;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.fouroulis.vasilis.artkotsis.databinding.ItemDetailBinding;
 import com.fouroulis.vasilis.artkotsis.model.PaperItem;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 /**
@@ -39,6 +31,7 @@ public class ItemDetailFragment extends Fragment {
     public static final String ARG_ITEM = "item";
     private AutoClearedValue<ItemDetailBinding> binding;
     private PaperItem paperItem;
+    private OnDestroyFragmentListener onDestroyFragment;
 
     public ItemDetailFragment() {
 
@@ -54,12 +47,24 @@ public class ItemDetailFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        onDestroyFragment = (OnDestroyFragmentListener) context;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM)) {
             paperItem = (PaperItem) getArguments().getSerializable(ARG_ITEM);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        onDestroyFragment.onDestroyFragment(true);
     }
 
     @Override
@@ -76,6 +81,7 @@ public class ItemDetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        onDestroyFragment.onStartFragment(true);
         binding.get().setItem(paperItem);
         binding.get().title.setText(paperItem.getTitle());
         try {
@@ -90,6 +96,9 @@ public class ItemDetailFragment extends Fragment {
         return Drawable.createFromStream(inputstream, null);
     }
 
-
+    public interface OnDestroyFragmentListener {
+        void onDestroyFragment(boolean isDestroyed);
+        void onStartFragment(boolean isStarted);
+    }
 
 }

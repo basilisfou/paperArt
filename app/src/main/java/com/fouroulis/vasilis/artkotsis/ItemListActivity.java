@@ -2,6 +2,7 @@ package com.fouroulis.vasilis.artkotsis;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -26,27 +28,66 @@ import java.util.List;
  * PaperItem details. On tablets, the activity presents the list of items and
  * PaperItem details side-by-side using two vertical panes.
  */
-public class ItemListActivity extends AppCompatActivity {
+public class ItemListActivity extends AppCompatActivity implements ItemDetailFragment.OnDestroyFragmentListener{
+    private List<PaperItem> paperItems;
+
+    private boolean started = false;
+
+    private Handler handler = new Handler();
+
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if(paperItems != null) {
+                openGridFragment(paperItems);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        toolbar.setTitle(getTitle());
+        hideStatusBar();
 
         View recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
 
         try {
-            List<PaperItem> paperItems = createList();
+            paperItems = createList();
             setupRecyclerView((RecyclerView) recyclerView, paperItems);
             openGridFragment(paperItems);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopTimer();
+    }
+
+    public void stopTimer() {
+        started = false;
+        handler.removeCallbacks(runnable);
+    }
+
+    public void startTimer() {
+        started = true;
+        handler.postDelayed(runnable, TimeUnit.MINUTES.toMillis(1));
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
+
+    private void hideStatusBar() {
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
     private void openGridFragment(List<PaperItem> paperItems){
@@ -88,6 +129,20 @@ public class ItemListActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onDestroyFragment(boolean isDestroyed) {
+        if(isDestroyed){
+            stopTimer();
+        }
+    }
+
+    @Override
+    public void onStartFragment(boolean isStarted) {
+        if(isStarted){
+            startTimer();
+        }
     }
 
     public static class SimpleItemRecyclerViewAdapter
@@ -169,6 +224,7 @@ public class ItemListActivity extends AppCompatActivity {
                         onClickListener.onClick(getAdapterPosition());
                         selectedPos = getLayoutPosition();
                         notifyDataSetChanged();
+
                     }
                 });
             }
