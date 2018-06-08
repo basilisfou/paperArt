@@ -88,9 +88,9 @@ public class ItemGridFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.get().gridRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
+        binding.get().gridRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),5));
         binding.get().gridRecyclerView.addItemDecoration(new GridDecoration(20,
-                4));
+                5));
 
         mAdapter = new SimpleItemRecyclerViewAdapter(this,paperItems);
         mAdapter.setOnPaperClickListener(position -> getActivity().getSupportFragmentManager().beginTransaction()

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,26 +107,32 @@ public class ItemListActivity extends AppCompatActivity {
 
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
-                                             int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_list_content, parent, false);
-            return new ViewHolder(view);
+                                                 int viewType) {
+
+            if(viewType == R.layout.haeder_list){
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.haeder_list, parent, false);
+                return new HeaderViewHolder(view);
+            } else {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_list_content, parent, false);
+                return new ItemViewHolder(view);
+            }
+
         }
 
         @Override
         public void onBindViewHolder(@NonNull final ViewHolder holder,
                                      int position) {
 
-            holder.mtitle.setText(mValues.get(position).getId() + "/" + mValues.size() );
-            holder.mSecondTitle.setText(mValues.get(position).getId() + "/" + mValues.size() );
+            if(holder.getItemViewType() == R.layout.haeder_list){
 
-            if(selectedPos == position){
-                holder.mtitle.setTextColor(getColorCustom(holder.mtitle.getContext(),R.color.title_first_color));
-                holder.mSecondTitle.setTextColor(getColorCustom(holder.mtitle.getContext(),R.color.title_second_color));
             } else {
-                holder.mtitle.setTextColor(getColorCustom(holder.mtitle.getContext(),R.color.text_unpick));
-                holder.mSecondTitle.setTextColor(getColorCustom(holder.mtitle.getContext(),R.color.text_unpick));
+                ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+                itemViewHolder.mtitle.setText(mValues.get(position).getId() + " / " + mValues.size() );
+                itemViewHolder.mSecondTitle.setText(mValues.get(position).getId() + " / " + mValues.size() );
             }
+
         }
 
         @Override
@@ -135,16 +140,26 @@ public class ItemListActivity extends AppCompatActivity {
             return mValues.size();
         }
 
+        @Override
+        public int getItemViewType(int position) {
+
+            if(position == 0 || position == mValues.size() - 1){
+                return R.layout.haeder_list;
+            }
+
+            return super.getItemViewType(position);
+        }
+
         public void setOnPaperClickListener(OnClickListener onClickListener) {
             this.onClickListener = onClickListener;
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder {
+        class ItemViewHolder extends ViewHolder {
             final TextView mtitle;
             final TextView mSecondTitle;
 
 
-            ViewHolder(View view) {
+            ItemViewHolder(View view) {
                 super(view);
                 mtitle = view.findViewById(R.id.id_text);
                 mSecondTitle = view.findViewById(R.id.id_text_second);
@@ -156,6 +171,20 @@ public class ItemListActivity extends AppCompatActivity {
                         notifyDataSetChanged();
                     }
                 });
+            }
+        }
+
+        class HeaderViewHolder extends ViewHolder{
+
+            public HeaderViewHolder(View itemView) {
+                super(itemView);
+            }
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder{
+
+            public ViewHolder(View itemView) {
+                super(itemView);
             }
         }
 
