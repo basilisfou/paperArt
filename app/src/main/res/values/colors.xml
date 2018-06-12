@@ -7,5 +7,7 @@
     <color name="title_second_color">#02ff02</color>
     <color name="text_unpick">#fff</color>
     <color name="background">#fdfdfe</color>
+    <color name="alpha">#eaeaea</color>
+    <color name="trasparent">#00000000</color>
 
 </resources>

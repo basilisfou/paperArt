@@ -1,4 +1,5 @@
 package com.fouroulis.vasilis.artkotsis;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -183,6 +184,21 @@ public class ItemListActivity extends AppCompatActivity implements ItemDetailFra
             if(holder.getItemViewType() == R.layout.haeder_list){
 
             } else {
+
+                if(selectedPos == position){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        holder.itemView.setBackgroundColor(mParentActivity.getColor(R.color.alpha));
+                    } else {
+                        holder.itemView.setBackgroundColor(mParentActivity.getResources().getColor(R.color.alpha));
+                    }
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        holder.itemView.setBackgroundColor(mParentActivity.getColor(R.color.trasparent));
+                    } else {
+                        holder.itemView.setBackgroundColor(mParentActivity.getResources().getColor(R.color.trasparent));
+                    }
+                }
+
                 ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
                 itemViewHolder.mtitle.setText(mValues.get(position).getId() + " / " + mValues.size() );
                 itemViewHolder.mSecondTitle.setText(mValues.get(position).getId() + " / " + mValues.size() );
@@ -218,14 +234,10 @@ public class ItemListActivity extends AppCompatActivity implements ItemDetailFra
                 super(view);
                 mtitle = view.findViewById(R.id.id_text);
                 mSecondTitle = view.findViewById(R.id.id_text_second);
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onClickListener.onClick(getAdapterPosition());
-                        selectedPos = getLayoutPosition();
-                        notifyDataSetChanged();
-
-                    }
+                view.setOnClickListener(view1 -> {
+                    onClickListener.onClick(getAdapterPosition());
+                    selectedPos = getLayoutPosition();
+                    notifyDataSetChanged();
                 });
             }
         }

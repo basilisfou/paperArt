@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ArtKotsis</string>
+    <string name="app_name">Arcive4</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="toolbar_title_1">A4 ; International Paper Sizes ISO 216/2007</string>
     <string name="toolbar_title_2">Arcive4</string>
@@ -7,6 +7,8 @@
     <string name="toolbar_title_4">Fla</string>
 
     <string name="density_pointer">g/m <sup><small> 2 </small></sup></string>
+    <string name="dpi">300 dpi</string>
+    <string name="gramsPerSquareMetre">80</string>
     <string name="color">grayscale</string>
     <string name="resolution">resolution</string>
     <string name="bytes">%s byte</string>

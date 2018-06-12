@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 app:font="@{`OratorStd.otf`}"
-                android:text="@{item.gramsPerSquareMetre}"
+                android:text="@string/gramsPerSquareMetre"
                 android:id="@+id/density"
                 android:layout_above="@+id/density_pointer"/>
 
@@ -84,25 +84,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 android:id="@+id/density_pointer"
-                android:text="@string/density_pointer"
-                android:layout_above="@+id/bit"
-                app:font="@{`OratorStd.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:text="@{item.bit}"
-                android:id="@+id/bit"
-                android:layout_above="@+id/dpi"
-                app:font="@{`OratorStd.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/dpi"
-                android:text="@{item.dpi}"
+                android:text="@string/dpi"
                 android:layout_above="@+id/color"
                 app:font="@{`OratorStd.otf`}" />
 
@@ -112,15 +94,24 @@
                 android:textColor="#000"
                 android:id="@+id/color"
                 android:text="@string/color"
-                android:layout_above="@+id/resolution_pointer"
+                android:layout_above="@+id/date"
                 app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="#000"
-                android:id="@+id/resolution_pointer"
-                android:text="@string/resolution"
+                android:id="@+id/date"
+                android:text="122222222"
+                android:layout_above="@+id/time"
+                app:font="@{`OratorStd.otf`}" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="#000"
+                android:id="@+id/time"
+                android:text="12:21"
                 android:layout_above="@+id/bytes"
                 app:font="@{`OratorStd.otf`}" />
 
@@ -148,26 +139,9 @@
                 android:textColor="#000"
                 android:id="@+id/scan_jet"
                 android:text="@{item.scanPrinter}"
-                android:layout_above="@+id/date"
-                app:font="@{`OratorStd.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:text="@{item.dateTime}"
-                android:id="@+id/date"
-                android:layout_above="@+id/serial_number"
-                app:font="@{`OratorStd.otf`}" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/serial_number"
-                android:text="@{item.serialNumber}"
                 android:layout_alignParentBottom="true"
                 app:font="@{`OratorStd.otf`}" />
+
         </RelativeLayout>
 
         <!-- toolbar -->
