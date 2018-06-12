@@ -1,15 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Arrows -->
+        <RelativeLayout
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/container_arrows"
+            android:layout_above="@+id/toolbar">
+
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="121dp"
+                android:src="@drawable/arrow1"
+                android:layout_marginTop="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="121dp"
+                android:src="@drawable/arrow2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="60dp"
+                android:layout_alignParentBottom="true"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
         <android.support.v7.widget.RecyclerView
             android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="20dp"
             android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
             android:id="@+id/grid_recycler_view"/>
 
-    </LinearLayout>
+        <!-- toolbar -->
+        <LinearLayout
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="22dp"
+            android:id="@+id/toolbar"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="@drawable/background_toolbar_grid">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:font="@{`app_font.otf`}"
+                android:layout_gravity="center_vertical"
+                android:textSize="25sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/toolbar_title_1" />
+
+            <View
+                android:layout_height="10dp"
+                android:layout_width="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/fullstop_background"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:font="@{`app_font.otf`}"
+                android:layout_gravity="center_vertical"
+                android:textSize="25sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/toolbar_title_2" />
+
+            <View
+                android:layout_height="10dp"
+                android:layout_width="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/fullstop_background"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:font="@{`app_font.otf`}"
+                android:layout_gravity="center_vertical"
+                android:textSize="25sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/toolbar_title_3" />
+
+            <View
+                android:layout_height="10dp"
+                android:layout_width="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/fullstop_background"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:font="@{`app_font.otf`}"
+                android:layout_gravity="center_vertical"
+                android:textSize="25sp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/toolbar_title_4" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/background_sec_toolbar"/>
+
+    </RelativeLayout>
 </layout>

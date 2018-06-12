@@ -22,7 +22,7 @@
 
         <!-- Arrows -->
         <RelativeLayout
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -30,8 +30,8 @@
             android:layout_above="@+id/toolbar">
 
             <ImageView
-                android:layout_width="31dp"
-                android:layout_height="98dp"
+                android:layout_width="39dp"
+                android:layout_height="121dp"
                 android:src="@drawable/arrow1"
                 android:layout_marginTop="60dp"
                 android:layout_centerHorizontal="true"
@@ -39,8 +39,8 @@
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:layout_width="31dp"
-                android:layout_height="98dp"
+                android:layout_width="39dp"
+                android:layout_height="121dp"
                 android:src="@drawable/arrow2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="60dp"
@@ -67,14 +67,14 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 android:id="@+id/title"
-                app:font="@{`app_font.otf`}"
+                app:font="@{`OratorStd.otf`}"
                 android:layout_alignParentTop="true"/>
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="#000"
-                app:font="@{`app_font.otf`}"
+                app:font="@{`OratorStd.otf`}"
                 android:text="@{item.gramsPerSquareMetre}"
                 android:id="@+id/density"
                 android:layout_above="@+id/density_pointer"/>
@@ -86,7 +86,7 @@
                 android:id="@+id/density_pointer"
                 android:text="@string/density_pointer"
                 android:layout_above="@+id/bit"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                 android:text="@{item.bit}"
                 android:id="@+id/bit"
                 android:layout_above="@+id/dpi"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 android:id="@+id/dpi"
                 android:text="@{item.dpi}"
                 android:layout_above="@+id/color"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                 android:id="@+id/color"
                 android:text="@string/color"
                 android:layout_above="@+id/resolution_pointer"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                 android:id="@+id/resolution_pointer"
                 android:text="@string/resolution"
                 android:layout_above="@+id/bytes"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                 android:id="@+id/bytes"
                 android:text="@{item.bytes}"
                 android:layout_above="@+id/paper"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                 android:id="@+id/paper"
                 android:text="@{item.paperType}"
                 android:layout_above="@+id/scan_jet"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                 android:id="@+id/scan_jet"
                 android:text="@{item.scanPrinter}"
                 android:layout_above="@+id/date"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
                 android:text="@{item.dateTime}"
                 android:id="@+id/date"
                 android:layout_above="@+id/serial_number"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
                 android:id="@+id/serial_number"
                 android:text="@{item.serialNumber}"
                 android:layout_alignParentBottom="true"
-                app:font="@{`app_font.otf`}" />
+                app:font="@{`OratorStd.otf`}" />
         </RelativeLayout>
 
         <!-- toolbar -->
@@ -176,6 +176,7 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="2dp"
             android:id="@+id/toolbar"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
@@ -243,14 +244,21 @@
 
         </LinearLayout>
 
+        <FrameLayout
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="18dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/background_sec_toolbar"/>
+
         <!-- Image -->
         <ImageView
-            android:layout_width="420dp"
+            android:layout_width="470dp"
             android:layout_alignParentRight="true"
             android:layout_height="match_parent"
             android:id="@+id/image_view"
-            android:scaleType="fitXY"
-            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:layout_marginRight="120dp"
             android:background="@color/colorAccent"
             android:layout_alignParentEnd="true"
