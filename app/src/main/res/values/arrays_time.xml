@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="times" translatable="false">
+
+        <item>11:30:34 pm</item> <!-- 1 -->
+    </string-array>
+</resources>
