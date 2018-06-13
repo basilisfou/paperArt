@@ -29,12 +29,14 @@ import java.util.concurrent.TimeUnit;
  * PaperItem details. On tablets, the activity presents the list of items and
  * PaperItem details side-by-side using two vertical panes.
  */
-public class ItemListActivity extends AppCompatActivity implements ItemDetailFragment.OnDestroyFragmentListener{
+public class ItemListActivity extends AppCompatActivity implements ItemDetailFragment.OnDestroyFragmentListener, ItemGridFragment.ChangeSelectionIntoNavigation {
     private List<PaperItem> paperItems;
 
     private boolean started = false;
 
     private Handler handler = new Handler();
+
+    private SimpleItemRecyclerViewAdapter adapter;
 
     private Runnable runnable = new Runnable() {
         @Override
@@ -100,35 +102,31 @@ public class ItemListActivity extends AppCompatActivity implements ItemDetailFra
     private List<PaperItem> createList() throws IOException {
         List<PaperItem> paperItems = new ArrayList<>();
         List<String> images =  getImages(this);
+        images.subList(images.size() - 2, images.size()).clear();
+
+        String[] bytes = getResources().getStringArray(R.array.bytes);
+        String[] dates = getResources().getStringArray(R.array.dates);
+        String[] time = getResources().getStringArray(R.array.times);
 
         for(int i = 0; i < images.size(); i++){
-            PaperItem item = new PaperItem(i + "/" + images.size() , i,"80",
-                    "16",
-                    "200",
-                    "grayscale",
-                    "resolution",
-                    "7.932.774",
-                    "Fabriano Copy 3",
-                    "HP ScanJet G2710",
-                     "04/01/2017 2.30.45",
-                    "serial number 8001348103363",
-                     images.get(i));
-            paperItems.add(item);
+            try {
+                PaperItem item = new PaperItem((i) + "/" + images.size(),i,bytes[i],dates[i],time[i],images.get(i));
+                paperItems.add(item);
+            } catch (java.lang.IndexOutOfBoundsException e){
+                PaperItem item = new PaperItem((i) + "/" + images.size(),i,bytes[0],dates[0],time[0],images.get(i));
+                paperItems.add(item);
+            }
+
         }
 
         return paperItems;
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, final List<PaperItem> paperItems) {
-        SimpleItemRecyclerViewAdapter adapter = new SimpleItemRecyclerViewAdapter(this,paperItems);
-        adapter.setOnPaperClickListener(new SimpleItemRecyclerViewAdapter.OnClickListener() {
-            @Override
-            public void onClick(int position) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.item_detail_container, ItemDetailFragment.newInstance(paperItems.get(position)))
-                        .commit();
-            }
-        });
+        adapter = new SimpleItemRecyclerViewAdapter(this,paperItems);
+        adapter.setOnPaperClickListener(position -> getSupportFragmentManager().beginTransaction()
+                .replace(R.id.item_detail_container, ItemDetailFragment.newInstance(paperItems.get(position)))
+                .commit());
         recyclerView.setAdapter(adapter);
     }
 
@@ -144,6 +142,13 @@ public class ItemListActivity extends AppCompatActivity implements ItemDetailFra
         if(isStarted){
             startTimer();
         }
+    }
+
+    @Override
+    public void onGridItemSelect(int position) {
+
+        assert(adapter != null);
+        adapter.setSelectedPos(position + 1 );
     }
 
     public static class SimpleItemRecyclerViewAdapter
@@ -260,12 +265,9 @@ public class ItemListActivity extends AppCompatActivity implements ItemDetailFra
             void onClick(int position);
         }
 
-        private int getColorCustom(Context context,int resColor){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                return context.getColor(resColor);
-            } else {
-                return context.getResources().getColor(resColor);
-            }
+        public void setSelectedPos(int pos){
+            selectedPos = pos;
+            notifyDataSetChanged();
         }
     }
 

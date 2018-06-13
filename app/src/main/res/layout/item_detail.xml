@@ -67,6 +67,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 android:id="@+id/title"
+                android:text="@{item.getTitle()}"
                 app:font="@{`OratorStd.otf`}"
                 android:layout_alignParentTop="true"/>
 
@@ -102,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 android:id="@+id/date"
-                android:text="122222222"
+                android:text="@{item.getDate()}"
                 android:layout_above="@+id/time"
                 app:font="@{`OratorStd.otf`}" />
 
@@ -111,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 android:id="@+id/time"
-                android:text="12:21"
+                android:text="@{item.getTime()}"
                 android:layout_above="@+id/bytes"
                 app:font="@{`OratorStd.otf`}" />
 
@@ -120,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 android:id="@+id/bytes"
-                android:text="@{item.bytes}"
+                android:text="@{item.getBytes()}"
                 android:layout_above="@+id/paper"
                 app:font="@{`OratorStd.otf`}" />
 
@@ -129,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 android:id="@+id/paper"
-                android:text="@{item.paperType}"
+                android:text="@string/paper_type"
                 android:layout_above="@+id/scan_jet"
                 app:font="@{`OratorStd.otf`}" />
 
@@ -138,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#000"
                 android:id="@+id/scan_jet"
-                android:text="@{item.scanPrinter}"
+                android:text="@string/scanner"
                 android:layout_alignParentBottom="true"
                 app:font="@{`OratorStd.otf`}" />
 
@@ -234,6 +235,7 @@
             android:id="@+id/image_view"
             android:scaleType="fitCenter"
             android:layout_marginRight="120dp"
+            app:setImage="@{item.getImage()}"
             android:background="@color/colorAccent"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="50dp"/>

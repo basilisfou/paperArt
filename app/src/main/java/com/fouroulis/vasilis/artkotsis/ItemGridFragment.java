@@ -1,5 +1,6 @@
 package com.fouroulis.vasilis.artkotsis;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fouroulis.vasilis.artkotsis.databinding.FragmentGridBinding;
 import com.fouroulis.vasilis.artkotsis.databinding.ItemDetailBinding;
 import com.fouroulis.vasilis.artkotsis.model.PaperItem;
@@ -47,6 +49,7 @@ public class ItemGridFragment extends Fragment {
     private AutoClearedValue<FragmentGridBinding> binding;
     private List<PaperItem> paperItems;
     private SimpleItemRecyclerViewAdapter mAdapter;
+    private ChangeSelectionIntoNavigation changeSelectionIntoNavigationListener;
 
     public ItemGridFragment() {
 
@@ -77,6 +80,18 @@ public class ItemGridFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        changeSelectionIntoNavigationListener = (ChangeSelectionIntoNavigation)context;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        changeSelectionIntoNavigationListener = (ChangeSelectionIntoNavigation)activity;
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FragmentGridBinding dataBinding = DataBindingUtil.inflate(inflater,
@@ -93,9 +108,13 @@ public class ItemGridFragment extends Fragment {
                 5));
 
         mAdapter = new SimpleItemRecyclerViewAdapter(this,paperItems);
-        mAdapter.setOnPaperClickListener(position -> getActivity().getSupportFragmentManager().beginTransaction()
+        mAdapter.setOnPaperClickListener(position -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.item_detail_container, ItemDetailFragment.newInstance(paperItems.get(position)))
-                .commit());
+                .commit();
+            changeSelectionIntoNavigationListener.onGridItemSelect(position);
+
+        });
         binding.get().gridRecyclerView.setAdapter(mAdapter);
 
     }
@@ -125,8 +144,10 @@ public class ItemGridFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final SimpleItemRecyclerViewAdapter.ViewHolder holder,
                                      int position) {
-            Glide.with(fragment)
+            GlideApp.with(fragment)
                     .load(Uri.parse("file:///android_asset/images/" + mValues.get(position).getImage()))
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE )
                     .into(holder.mImage);
 
         }
@@ -155,7 +176,15 @@ public class ItemGridFragment extends Fragment {
             void onClick(int position);
         }
 
+        @Override
+        public void onViewRecycled(@NonNull ViewHolder holder) {
+            super.onViewRecycled(holder);
+            holder.mImage.setImageDrawable(null);
+        }
+    }
 
+    public interface ChangeSelectionIntoNavigation{
+        void onGridItemSelect(int position);
     }
 
 }

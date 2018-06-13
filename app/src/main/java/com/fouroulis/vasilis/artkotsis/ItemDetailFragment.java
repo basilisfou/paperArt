@@ -83,17 +83,6 @@ public class ItemDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         onDestroyFragment.onStartFragment(true);
         binding.get().setItem(paperItem);
-        binding.get().title.setText(paperItem.getTitle());
-        try {
-            binding.get().imageView.setImageDrawable(takeImageFromAssets(paperItem.getImage()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private Drawable takeImageFromAssets(String image) throws IOException {
-        InputStream inputstream = getActivity().getAssets().open("images/" +image);
-        return Drawable.createFromStream(inputstream, null);
     }
 
     public interface OnDestroyFragmentListener {

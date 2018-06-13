@@ -1,7 +1,5 @@
 package com.fouroulis.vasilis.artkotsis.model;
 
-import android.graphics.drawable.Drawable;
-
 import java.io.Serializable;
 
 /**
@@ -11,25 +9,11 @@ public class PaperItem implements Serializable {
 
     private int id;
     private String title;
-    private String gramsPerSquareMetre;
-    private String bit;
-    private String dpi;
-    private String color;
-    private String resolution;
     private String bytes;
-    private String paperType;
-    private String scanPrinter;
-    private String dateTime;
-    private String serialNumber;
+    private String date;
+    private String time;
     private String image;
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public int getId() {
         return id;
@@ -39,85 +23,12 @@ public class PaperItem implements Serializable {
         this.id = id;
     }
 
-
-    public String getGramsPerSquareMetre() {
-        return gramsPerSquareMetre;
+    public String getDate() {
+        return date;
     }
 
-    public void setGramsPerSquareMetre(String gramsPerSquareMetre) {
-        this.gramsPerSquareMetre = gramsPerSquareMetre;
-    }
-
-    public String getBit() {
-        return bit;
-    }
-
-    public void setBit(String bit) {
-        this.bit = bit;
-    }
-
-    public String getDpi() {
-        return dpi;
-    }
-
-    public void setDpi(String dpi) {
-        this.dpi = dpi;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getResolution() {
-        return resolution;
-    }
-
-    public void setResolution(String resolution) {
-        this.resolution = resolution;
-    }
-
-    public String getBytes() {
-        return bytes;
-    }
-
-    public void setBytes(String bytes) {
-        this.bytes = bytes;
-    }
-
-    public String getPaperType() {
-        return paperType;
-    }
-
-    public void setPaperType(String paperType) {
-        this.paperType = paperType;
-    }
-
-    public String getScanPrinter() {
-        return scanPrinter;
-    }
-
-    public void setScanPrinter(String scanPrinter) {
-        this.scanPrinter = scanPrinter;
-    }
-
-    public String getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public String getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTitle() {
@@ -128,19 +39,28 @@ public class PaperItem implements Serializable {
         this.title = title;
     }
 
-    public PaperItem(String title, int id, String gramsPerSquareMetre, String bit, String dpi, String color, String resolution, String bytes, String paperType, String scanPrinter, String dateTime, String serialNumber, String image) {
-        this.id = id;
-        this.gramsPerSquareMetre = gramsPerSquareMetre;
-        this.bit = bit;
-        this.dpi = dpi;
-        this.color = color;
-        this.resolution = resolution;
-        this.bytes = bytes;
-        this.paperType = paperType;
-        this.scanPrinter = scanPrinter;
-        this.dateTime = dateTime;
-        this.serialNumber = serialNumber;
+    public String getBytes() {
+        return bytes;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
         this.image = image;
+    }
+
+    public PaperItem(String title, int id, String bytes, String date, String time, String image ) {
+        this.id = id;
+        this.bytes = bytes;
+        this.date = date;
         this.title = title;
+        this.time = time;
+        this.image = image;
     }
 }
