@@ -144,6 +144,11 @@ public class ItemListActivity extends AppCompatActivity implements ItemDetailFra
     }
 
     @Override
+    public void onStartFragment(boolean isStarted) {
+
+    }
+
+    @Override
     public void onGridItemSelect(int position) {
 
         assert(adapter != null);
