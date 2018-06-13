@@ -16,7 +16,7 @@
         <item>362.913  byte</item> <!-- 11 -->
         <item>282.571  byte</item> <!-- 12 -->
         <item>281.652  byte</item> <!-- 13 -->
-        <item>279.986  byte</item> <!-- 14 -->
+        <!-- 14 -->
         <item>251.942  byte</item> <!-- 15 -->
         <item>303.557  byte</item> <!-- 16 -->
         <item>356.651  byte</item> <!-- 17 -->
@@ -25,7 +25,7 @@
         <item>441.295  byte</item> <!-- 20 -->
         <item>263.663  byte</item> <!-- 21 -->
         <item>316.561  byte</item> <!-- 22 -->
-        <item>401.811  byte</item> <!-- 23 -->
+        <!-- 23 -->
         <item>331.538  byte</item> <!-- 24 -->
         <item>353.179  byte</item> <!-- 25 -->
         <item>343.386  byte</item> <!-- 26 -->
@@ -42,7 +42,7 @@
         <item>354.901  byte</item> <!-- 37 -->
         <item>366.233  byte</item> <!-- 38 -->
         <item>1.329.586 byte</item> <!-- 39 -->
-        <item>382.728  byte</item> <!-- 40 -->
+        <!-- 40 -->
         <item>409.531  byte</item> <!-- 41 -->
         <item>306.441  byte</item> <!-- 42 -->
         <item>385.360  byte</item> <!-- 43 -->
@@ -50,7 +50,7 @@
         <item>339.102  byte</item> <!-- 45 -->
         <item>430.409  byte</item> <!-- 46 -->
         <item>403.297  byte</item> <!-- 47 -->
-        <item>425.117  byte</item> <!-- 48 -->
+        <!-- 48 -->
         <item>343.042  byte</item> <!-- 49 -->
         <item>352.701  byte</item> <!-- 50 -->
         <item>404.423  byte</item> <!-- 51 -->
@@ -103,12 +103,13 @@
         <item>415.909  byte</item> <!-- 98 -->
         <item>362.729  byte</item> <!-- 99 -->
         <item>363.845  byte</item> <!-- 100 -->
+
         <item>405.644  byte</item> <!-- 101 -->
         <item>396.222  byte</item> <!-- 102 -->
         <item>349.969  byte</item> <!-- 103 -->
         <item>317.406  byte</item> <!-- 104 -->
         <item>298.172  byte</item> <!-- 105 -->
-        <item>296.130  byte</item> <!-- 106 -->
+        <!-- 106 -->
         <item>273.309  byte</item> <!-- 107 -->
         <item>336.404  byte</item> <!-- 108 -->
         <item>343.888  byte</item> <!-- 109 -->
@@ -141,9 +142,11 @@
         <item>294.757  byte</item> <!-- 136 -->
         <item>323.601  byte</item> <!-- 137 -->
         <item>267.077  byte</item> <!-- 138 -->
+
         <item>314.532  byte</item> <!-- 139 -->
         <item>275.614  byte</item> <!-- 140 -->
         <item>250.507  byte</item> <!-- 141 -->
+
         <item>284.745  byte</item> <!-- 142 -->
         <item>323.195  byte</item> <!-- 143 -->
         <item>260.860  byte</item> <!-- 144 -->
@@ -184,7 +187,9 @@
         <item>308.799  byte</item> <!-- 179 -->
         <item>313.679  byte</item> <!-- 180 -->
         <item>312.647  byte</item> <!-- 181 -->
+
         <item>271.601  byte</item> <!-- 182 -->
+
         <item>311.989  byte</item> <!-- 183 -->
         <item>284.466  byte</item> <!-- 184 -->
         <item>319.062  byte</item> <!-- 185 -->
@@ -198,7 +203,7 @@
         <item>338.173  byte</item> <!-- 193 -->
         <item>317.170  byte</item> <!-- 194 -->
         <item>354.761  byte</item> <!-- 195 -->
-        <item>305.224  byte</item> <!-- 196 -->
+        <!-- 196 -->
         <item>332.909  byte</item> <!-- 197 -->
         <item>397.671  byte</item> <!-- 198 -->
         <item>319.398  byte</item> <!-- 199 -->
@@ -223,6 +228,7 @@
         <item>338.927  byte</item> <!-- 218 -->
         <item>292.137  byte</item> <!-- 219 -->
         <item>333.838  byte</item> <!-- 220 -->
+
         <item>361.689  byte</item> <!-- 221 -->
         <item>378.512  byte</item> <!-- 222 -->
         <item>320.382  byte</item> <!-- 223 -->
@@ -232,7 +238,7 @@
         <item>321.960  byte</item> <!-- 227 -->
         <item>341.806  byte</item> <!-- 228 -->
         <item>311.604  byte</item> <!-- 229 -->
-        <item>337.326  byte</item> <!-- 230 -->
+        <!-- 230 -->
         <item>358.833  byte</item> <!-- 231 -->
         <item>298.714  byte</item> <!-- 232 -->
         <item>369.300  byte</item> <!-- 233 -->
@@ -246,25 +252,30 @@
         <item>‏‎337.407  byte</item> <!-- 241 -->
         <item>337.599  byte</item> <!-- 242 -->
         <item>336.355  byte</item> <!-- 243 -->
-        <item>‏‎338.669  byte</item> <!-- 244 -->
+        <!-- 244 -->
         <item>‏‎323.138  byte</item> <!-- 245 -->
-        <item>323.138  byte</item> <!-- 246 -->
-        <item>292.576  byte</item> <!-- 247 -->
+        <item>384.388  byte</item> <!-- 246 -->
+        <!-- 247 -->
         <item>304.884  byte</item> <!-- 248 -->
         <item>352.384  byte</item> <!-- 249 -->
         <item>307.765  byte</item> <!-- 250 -->
-        <item>295.100  byte</item> <!-- 251 -->
-        <item>325.257  byte</item> <!-- 252 -->
-        <item>‏‎‏‎384.388  byte</item> <!-- 253 -->
-        <item>307.765  byte</item> <!-- 254 -->
-        <item>411.524  byte</item> <!-- 255 -->
-        <item>‏‎349.946  byte</item> <!-- 256 -->
-        <item>418.459  byte</item> <!-- 257 -->
-        <item>330.916  byte</item> <!-- 258 -->
-        <item>362.875  byte</item> <!-- 259 -->
-        <item>365.417  byte</item> <!-- 260 -->
-        <item>317.043  byte</item> <!-- 261 -->
+
+        <!--<item>295.100  byte</item> &lt;!&ndash; 251 &ndash;&gt;-->
+        <!--<item>325.257  byte</item> &lt;!&ndash; 252 &ndash;&gt;-->
+        <!--&lt;!&ndash; 253 &ndash;&gt;-->
+        <!--<item>307.765  byte</item> &lt;!&ndash; 254 &ndash;&gt;-->
+        <!--<item>411.524  byte</item> &lt;!&ndash; 255 &ndash;&gt;-->
+        <!--<item>‏‎349.946  byte</item> &lt;!&ndash; 256 &ndash;&gt;-->
+        <!--<item>418.459  byte</item> &lt;!&ndash; 257 &ndash;&gt;-->
+        <!--<item>330.916  byte</item> &lt;!&ndash; 258 &ndash;&gt;-->
+        <!--<item>362.875  byte</item> &lt;!&ndash; 259 &ndash;&gt;-->
+        <!--<item>365.417  byte</item> &lt;!&ndash; 260 &ndash;&gt;-->
+        <!--<item>317.043  byte</item> &lt;!&ndash; 261 &ndash;&gt;-->
         <!--<item>379.703  byte</item> &lt;!&ndash; 262 &ndash;&gt;-->
         <!--<item>‏‎330.250  byte</item> &lt;!&ndash; 263 &ndash;&gt;-->
+
+
+
+        <!--<item>371.188  byte</item> &lt;!&ndash; 1 &ndash;&gt;-->
     </string-array>
 </resources>

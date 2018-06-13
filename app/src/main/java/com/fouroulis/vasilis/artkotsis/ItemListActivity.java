@@ -122,6 +122,12 @@ public class ItemListActivity extends AppCompatActivity implements ItemDetailFra
         return paperItems;
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        startTimer();
+    }
+
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, final List<PaperItem> paperItems) {
         adapter = new SimpleItemRecyclerViewAdapter(this,paperItems);
         adapter.setOnPaperClickListener(position -> getSupportFragmentManager().beginTransaction()
@@ -134,13 +140,6 @@ public class ItemListActivity extends AppCompatActivity implements ItemDetailFra
     public void onDestroyFragment(boolean isDestroyed) {
         if(isDestroyed){
             stopTimer();
-        }
-    }
-
-    @Override
-    public void onStartFragment(boolean isStarted) {
-        if(isStarted){
-            startTimer();
         }
     }
 
